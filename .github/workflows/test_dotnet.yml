@@ -6,23 +6,40 @@ on:
   pull_request:
     branches: [ test1-ga ]
 
-jobs:
-  build:
-
-    runs-on: windows-latest
-
+jobs:    
+  tests:
+    name: Unit Testing
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest]
+#       os: [windows-latest, macos-latest, ubuntu-latest]        
+        dotnet-version: [3.1.x]  
+#       dotnet-version: [3.1.x, 5.0.x]          
+        exclude:
+          - os: macos-latest
+            dotnet-version: 3.1.x
+          - os: macos-latest
+            dotnet-version: 5.0.x 
+          - os: ubuntu-latest
+            dotnet-version: 3.1.x 
+          - os: ubuntu-latest
+            dotnet-version: 5.0.x             
     defaults:
       run:
         working-directory: ./src
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-    - name: Restore dependencies
-      run: dotnet restore Api/PubnubApi.csproj
-    - name: Build
-      run: dotnet build Api/PubnubApi.csproj --configuration Release --no-restore
-    - name: Test
-      run: dotnet test Api/PubnubApi.csproj --no-build --verbosity normal
+      - uses: actions/checkout@v2.1.0
+      - name: Setup .NET Core ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}  
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Display dotnet version
+        run: dotnet --version          
+      - name: Build
+        run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet build --configuration Debug --no-restore
+      - name: Test
+        run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore --verbosity normal
