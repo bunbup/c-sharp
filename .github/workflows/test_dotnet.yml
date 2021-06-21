@@ -21,8 +21,8 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
-      run: dotnet restore ./Api/PubnubApi.csproj
+      run: dotnet restore Api/PubnubApi.csproj
     - name: Build
-      run: dotnet build ./Api/PubnubApi.csproj --configuration Release --no-restore
+      run: dotnet build Api/PubnubApi.csproj --configuration Release --no-restore
     - name: Test
-      run: dotnet test ./Api/PubnubApi.csproj --no-build --verbosity normal
+      run: dotnet test Api/PubnubApi.csproj --no-build --verbosity normal
