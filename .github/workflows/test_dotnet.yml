@@ -61,4 +61,8 @@ jobs:
       - name: Build PubnubApiPCL.Tests
         run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet build --configuration Debug --no-restore
       - name: Test PubnubApiPCL.Tests
+        env:
+          PN_PUB_KEY: ${{ secrets.PN_PUB_KEY }}
+          PN_SUB_KEY: ${{ secrets.PN_SUB_KEY }}
+          PN_SEC_KEY: ${{ secrets.PN_SEC_KEY }}
         run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore --verbosity normal
