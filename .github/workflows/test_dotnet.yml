@@ -39,6 +39,8 @@ jobs:
         run: dotnet restore
       - name: Display dotnet version
         run: dotnet --version          
+      - name: Build PubnubApi
+        run: cd ./Api/PubnubApi && dotnet build --configuration release --no-restore
   #    - name: Build
   #      run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet build --configuration Debug --no-restore
   #    - name: Test
