@@ -65,7 +65,7 @@ jobs:
           PN_PUB_KEY=${{ secrets.PN_PUB_KEY }}
           PN_SUB_KEY=${{ secrets.PN_SUB_KEY }}
           PN_SEC_KEY=${{ secrets.PN_SEC_KEY }}
-        run: echo $env:PN_PUB_KEY, $env:PN_SUB_KEY, $env:PN_SEC_KEY
+        #run: echo $env:PN_PUB_KEY, $env:PN_SUB_KEY, $env:PN_SEC_KEY
       - name: Print Keys
         run: echo $env:PN_PUB_KEY, $env:PN_SUB_KEY, $env:PN_SEC_KEY
       - name: Test PubnubApiPCL.Tests
