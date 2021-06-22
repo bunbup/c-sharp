@@ -66,4 +66,4 @@ jobs:
           PN_SUB_KEY: ${{ secrets.PN_SUB_KEY }}
           PN_SEC_KEY: ${{ secrets.PN_SEC_KEY }}
         #run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore --verbosity normal
-        run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore -l "console;verbosity=detailed"
+        run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet watch test --no-restore --verbosity normal --logger "console;verbosity=detailed"
