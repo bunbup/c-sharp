@@ -47,6 +47,10 @@ jobs:
         run: cd ./Api/PubnubApi && dotnet build --configuration release --no-restore
       - name: Build PubnubApiPCL
         run: cd ./Api/PubnubApiPCL && dotnet build --configuration release --no-restore
+      - name: Setup MSBuild
+        run: microsoft/setup-msbuild@1.0.2
+      - name: Build PubnubApiUWP
+        run: cd ./Api/PubnubApiUWP && dotnet build --configuration release --no-restore
   #    - name: Build
   #      run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet build --configuration Debug --no-restore
   #    - name: Test
