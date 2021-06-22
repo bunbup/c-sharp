@@ -45,6 +45,8 @@ jobs:
         run: dotnet restore --force
       - name: Build PubnubApi
         run: cd ./Api/PubnubApi && dotnet build --configuration release --no-restore
+      - name: Build PubnubApiPCL
+        run: cd ./Api/PubnubApiPCL && dotnet build --configuration release --no-restore
   #    - name: Build
   #      run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet build --configuration Debug --no-restore
   #    - name: Test
