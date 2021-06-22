@@ -60,10 +60,12 @@ jobs:
         run: cd ./Api/PubnubApiUWP && msbuild PubnubApiUWP.csproj /p:Configuration=Release
       - name: Build PubnubApiPCL.Tests
         run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet build --configuration Debug --no-restore
-      - name: Test PubnubApiPCL.Tests
+      - name: Set Environment Variables for Keys
         env: 
-          PN_PUB_KEY=${{ secrets.PN_PUB_KEY }}
-          PN_SUB_KEY=${{ secrets.PN_SUB_KEY }}
-          PN_SEC_KEY=${{ secrets.PN_SEC_KEY }}
+          PN_PUB_KEY:${{ secrets.PN_PUB_KEY }}
+          PN_SUB_KEY:${{ secrets.PN_SUB_KEY }}
+          PN_SEC_KEY:${{ secrets.PN_SEC_KEY }}
+        run: echo env.PN_PUB_KEY, env.PN_SUB_KEY, env.PN_SEC_KEY      
+      - name: Test PubnubApiPCL.Tests
         #run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore --verbosity normal
         run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore --verbosity normal --logger "console;verbosity=detailed"
