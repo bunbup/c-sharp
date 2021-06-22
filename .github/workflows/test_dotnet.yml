@@ -35,10 +35,10 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{ matrix.dotnet-version }}  
-      - name: Install dependencies
-        run: dotnet restore
       - name: Display dotnet version
         run: dotnet --version          
+      - name: Install dependencies
+        run: dotnet restore --force
       - name: Build PubnubApi
         run: cd ./Api/PubnubApi && dotnet build --configuration release --no-restore
   #    - name: Build
