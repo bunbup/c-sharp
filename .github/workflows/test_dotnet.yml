@@ -6,7 +6,14 @@ on:
   pull_request:
     branches: [ test1-ga ]
 
-jobs:    
+jobs:
+  build-windows:
+    name: Build Windows
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2.1.0
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.0.2
   tests:
     name: Unit Testing
     runs-on: ${{ matrix.os }}
