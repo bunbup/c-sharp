@@ -57,7 +57,7 @@ jobs:
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.0.2
       - name: Build PubnubApiUWP
-        run: cd ./Api/PubnubApiUWP && msbuild PubnubApi.csproj /p:Configuration=Release
+        run: cd ./Api/PubnubApiUWP && msbuild PubnubApiUWP.csproj /p:Configuration=Release
   #    - name: Build
   #      run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet build --configuration Debug --no-restore
   #    - name: Test
