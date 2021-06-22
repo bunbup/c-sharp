@@ -65,7 +65,7 @@ jobs:
           PN_PUB_KEY: ${{ secrets.PN_PUB_KEY }}
           PN_SUB_KEY: ${{ secrets.PN_SUB_KEY }}
           PN_SEC_KEY: ${{ secrets.PN_SEC_KEY }}
-        run: echo env.PN_PUB_KEY, env.PN_SUB_KEY, env.PN_SEC_KEY      
+        run: echo "$PN_PUB_KEY, $PN_SUB_KEY, $PN_SEC_KEY"      
       - name: Test PubnubApiPCL.Tests
         #run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore --verbosity normal
         run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore --verbosity normal --logger "console;verbosity=detailed"
