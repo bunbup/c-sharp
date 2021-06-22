@@ -39,7 +39,7 @@ jobs:
         run: dotnet restore
       - name: Display dotnet version
         run: dotnet --version          
-      - name: Build
-        run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet build --configuration Debug --no-restore
-      - name: Test
-        run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore --verbosity normal
+  #    - name: Build
+  #      run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet build --configuration Debug --no-restore
+  #    - name: Test
+  #      run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore --verbosity normal
