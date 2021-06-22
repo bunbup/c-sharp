@@ -61,10 +61,10 @@ jobs:
       - name: Build PubnubApiPCL.Tests
         run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet build --configuration Debug --no-restore
       - name: Set Environment Variables for Keys
-        env: 
-          PN_PUB_KEY: ${{ secrets.PN_PUB_KEY }}
-          PN_SUB_KEY: ${{ secrets.PN_SUB_KEY }}
-          PN_SEC_KEY: ${{ secrets.PN_SEC_KEY }}
+        #env: 
+        #  PN_PUB_KEY: ${{ secrets.PN_PUB_KEY }}
+        #  PN_SUB_KEY: ${{ secrets.PN_SUB_KEY }}
+        #  PN_SEC_KEY: ${{ secrets.PN_SEC_KEY }}
         #run: echo "$PN_PUB_KEY, $PN_SUB_KEY, $PN_SEC_KEY"      
         run: echo "$PN_PUB_KEY (${#PN_PUB_KEY}), $PN_SUB_KEY (${#PN_SUB_KEY}), $PN_SEC_KEY (${#PN_SEC_KEY})"
       - name: Test PubnubApiPCL.Tests
