@@ -24,6 +24,9 @@ namespace PubNubMessaging.Tests
 
         static PubnubCommon()
         {
-        }
+            Console.WriteLine(string.Format("Publish Key = {0}", PublishKey.Substring(0,7)));
+            Console.WriteLine(string.Format("Subscribe Key = {0}", SubscribeKey.Substring(0, 7)));
+            Console.WriteLine(string.Format("Secret Key = {0}", SecretKey.Substring(0, 7)));
+         }
     }
 }
