@@ -26,7 +26,7 @@ jobs:
       - name: Display dotnet version
         run: dotnet --version          
       - name: Install dependencies
-        run: dotnet restore --force
+        run: cd ./Api/PubnubApi && dotnet restore --force
       - name: Build PubnubApi
         run: cd ./Api/PubnubApi && dotnet build --configuration release --no-restore
   build-pubnubpcl:
@@ -48,7 +48,7 @@ jobs:
       - name: Display dotnet version
         run: dotnet --version          
       - name: Install dependencies
-        run: dotnet restore --force
+        run: cd ./Api/PubnubApiPCL && dotnet restore --force
       - name: Build PubnubApiPCL
         run: cd ./Api/PubnubApiPCL && dotnet build --configuration release --no-restore
   tests:
