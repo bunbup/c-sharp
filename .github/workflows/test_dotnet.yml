@@ -10,6 +10,9 @@ jobs:
   build-pubnub:
     name: Build Pubnub SDK
     runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: ./src
     steps:
       - uses: actions/checkout@v2.1.0
       - name: Setup .NET Core 2.1.519
@@ -22,11 +25,16 @@ jobs:
           dotnet-version: 3.1.x
       - name: Display dotnet version
         run: dotnet --version          
+      - name: Install dependencies
+        run: dotnet restore --force
       - name: Build PubnubApi
-        run: cd ./Api/PubnubApi && dotnet build PubnubApi.csproj --configuration debug --restore --force
+        run: cd ./Api/PubnubApi && dotnet build --configuration release --no-restore
   build-pubnubpcl:
     name: Build PubnubPCL SDK
     runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: ./src
     steps:
       - uses: actions/checkout@v2.1.0
       - name: Setup .NET Core 2.1.519
@@ -42,7 +50,7 @@ jobs:
       - name: Install dependencies
         run: dotnet restore --force
       - name: Build PubnubApiPCL
-        run: cd ./Api/PubnubApiPCL && dotnet build --configuration debug --no-restore
+        run: cd ./Api/PubnubApiPCL && dotnet build --configuration release --no-restore
   tests:
     name: Unit Testing
     runs-on: ${{ matrix.os }}
