@@ -51,13 +51,13 @@ jobs:
       - name: Install dependencies
         run: dotnet restore --force
       - name: Build PubnubApi
-        run: cd ./Api/PubnubApi && dotnet build --configuration release --no-restore
+        run: cd ./Api/PubnubApi && dotnet build --configuration debug --no-restore
       - name: Build PubnubApiPCL
-        run: cd ./Api/PubnubApiPCL && dotnet build --configuration release --no-restore
+        run: cd ./Api/PubnubApiPCL && dotnet build --configuration debug --no-restore
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.0.2
       - name: Build PubnubApiUWP
-        run: cd ./Api/PubnubApiUWP && msbuild PubnubApiUWP.csproj /p:Configuration=Release
+        run: cd ./Api/PubnubApiUWP && msbuild PubnubApiUWP.csproj /p:Configuration=Debug
       - name: Build PubnubApiPCL.Tests
         run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet build --configuration Debug --no-restore
       - name: Set Environment Variables for Keys
