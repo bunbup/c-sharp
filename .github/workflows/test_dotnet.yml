@@ -51,8 +51,32 @@ jobs:
         run: cd ./Api/PubnubApiPCL && dotnet restore --force
       - name: Build PubnubApiPCL
         run: cd ./Api/PubnubApiPCL && dotnet build --configuration release --no-restore
+  build-pubnubuwp:
+    name: Build PubnubUWP SDK
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: ./src
+    steps:
+      - uses: actions/checkout@v2.1.0
+      - name: Setup .NET Core 2.1.519
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 2.1.519
+      - name: Setup .NET Core 3.1.x
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
+      - name: Display dotnet version
+        run: dotnet --version          
+      - name: Install dependencies
+        run: cd ./Api/PubnubApiUWP && dotnet restore --force
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.0.2
+      - name: Build PubnubApiUWP
+        run: cd ./Api/PubnubApiUWP && msbuild PubnubApiUWP.csproj /p:Configuration=Release
   tests:
-    name: Unit Testing
+    name: Unit Testing targeting PubnubPCL
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -86,15 +110,7 @@ jobs:
       - name: Display dotnet version
         run: dotnet --version          
       - name: Install dependencies
-        run: dotnet restore --force
-      - name: Build PubnubApi
-        run: cd ./Api/PubnubApi && dotnet build --configuration debug --no-restore
-      - name: Build PubnubApiPCL
-        run: cd ./Api/PubnubApiPCL && dotnet build --configuration debug --no-restore
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v1.0.2
-      - name: Build PubnubApiUWP
-        run: cd ./Api/PubnubApiUWP && msbuild PubnubApiUWP.csproj /p:Configuration=Debug
+        run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet restore --force
       - name: Build PubnubApiPCL.Tests
         run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet build --configuration Debug --no-restore
       - name: Set Environment Variables for Keys
