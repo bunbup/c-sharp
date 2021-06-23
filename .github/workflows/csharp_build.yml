@@ -111,19 +111,15 @@ jobs:
         run: dotnet --version          
       - name: Install dependencies
         run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet restore --force
+      - name: Setup VSTest Path
+        uses: darenm/Setup-VSTest@v1
       - name: Build PubnubApiPCL.Tests
         run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet build --configuration Debug --no-restore
-      - name: Set Environment Variables for Keys
-        env: 
-          PN_PUB_KEY: ${{ secrets.PN_PUB_KEY }}
-          PN_SUB_KEY: ${{ secrets.PN_SUB_KEY }}
-          PN_SEC_KEY: ${{ secrets.PN_SEC_KEY }}
-        run: echo "$PN_PUB_KEY, $PN_SUB_KEY, $PN_SEC_KEY"      
-        #run: echo "$PN_PUB_KEY (${#PN_PUB_KEY}), $PN_SUB_KEY (${#PN_SUB_KEY}), $PN_SEC_KEY (${#PN_SEC_KEY})"
-      - name: Test PubnubApiPCL.Tests
-        #run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore --verbosity normal
-        run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore --verbosity normal --logger "console;verbosity=detailed"
-        env: 
-          PN_PUB_KEY: ${{ secrets.PN_PUB_KEY }}
-          PN_SUB_KEY: ${{ secrets.PN_SUB_KEY }}
-          PN_SEC_KEY: ${{ secrets.PN_SEC_KEY }}
+      - name: VSTest
+        run: vstest.console.exe /Platform:x64
+      #- name: Test PubnubApiPCL.Tests
+      #  run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore --verbosity normal --logger "console;verbosity=detailed"
+      #  env: 
+      #    PN_PUB_KEY: ${{ secrets.PN_PUB_KEY }}
+      #    PN_SUB_KEY: ${{ secrets.PN_SUB_KEY }}
+      #    PN_SEC_KEY: ${{ secrets.PN_SEC_KEY }}
