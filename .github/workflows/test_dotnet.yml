@@ -23,9 +23,9 @@ jobs:
       - name: Display dotnet version
         run: dotnet --version          
       - name: Install dependencies
-        run: dotnet restore --force
+        run: cd ./Api/PubnubApi && dotnet restore PubnubApi.csproj --force
       - name: Build PubnubApi
-        run: cd ./Api/PubnubApi && dotnet build --configuration debug --no-restore
+        run: cd ./Api/PubnubApi && dotnet build PubnubApi.csproj --configuration debug --no-restore
   build-pubnubpcl:
     name: Build PubnubPCL SDK
     runs-on: windows-latest
