@@ -115,6 +115,8 @@ jobs:
         uses: darenm/Setup-VSTest@v1
       - name: Build PubnubApiPCL.Tests
         run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet build --configuration Debug --no-restore
+      - name: Check Diskspace
+        run: Get-WmiObject -Class Win32_logicaldisk
       - name: VSTest
         run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet vstest .\bin\Debug\netcoreapp3.1\PubnubApiPCL.Tests.dll
         env: 
