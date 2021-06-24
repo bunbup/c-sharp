@@ -117,6 +117,10 @@ jobs:
         run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet build --configuration Debug --no-restore
       - name: VSTest
         run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet vstest .\bin\Debug\netcoreapp3.1\PubnubApiPCL.Tests.dll
+        env: 
+         PN_PUB_KEY: ${{ secrets.PN_PUB_KEY }}
+         PN_SUB_KEY: ${{ secrets.PN_SUB_KEY }}
+         PN_SEC_KEY: ${{ secrets.PN_SEC_KEY }}
       #- name: Test PubnubApiPCL.Tests
       #  run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore --verbosity normal --logger "console;verbosity=detailed"
       #  env: 
