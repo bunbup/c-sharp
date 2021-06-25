@@ -78,6 +78,10 @@ jobs:
   tests:
     name: Unit Testing targeting PubnubPCL
     runs-on: ${{ matrix.os }}
+    env: 
+     PN_PUB_KEY: ${{ secrets.PN_PUB_KEY }}
+     PN_SUB_KEY: ${{ secrets.PN_SUB_KEY }}
+     PN_SEC_KEY: ${{ secrets.PN_SEC_KEY }}
     strategy:
       fail-fast: false
       matrix:
@@ -117,15 +121,9 @@ jobs:
         run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet build --configuration Debug --no-restore
       - name: Check Diskspace
         run: powershell Get-WmiObject -Class Win32_logicaldisk
-      - name: VSTest
-        run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet vstest .\bin\Debug\netcoreapp3.1\PubnubApiPCL.Tests.dll
-        env: 
-         PN_PUB_KEY: ${{ secrets.PN_PUB_KEY }}
-         PN_SUB_KEY: ${{ secrets.PN_SUB_KEY }}
-         PN_SEC_KEY: ${{ secrets.PN_SEC_KEY }}
-      #- name: Test PubnubApiPCL.Tests
-      #  run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore --verbosity normal --logger "console;verbosity=detailed"
-      #  env: 
-      #    PN_PUB_KEY: ${{ secrets.PN_PUB_KEY }}
-      #    PN_SUB_KEY: ${{ secrets.PN_SUB_KEY }}
-      #    PN_SEC_KEY: ${{ secrets.PN_SEC_KEY }}
+     # - name: VSTest
+     #   run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet vstest .\bin\Debug\netcoreapp3.1\PubnubApiPCL.Tests.dll
+      - name: Test PubnubApiPCL.Tests
+        run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore --verbosity normal --logger "console;verbosity=detailed"
+      - name: Pubnub Logs
+        run: cd ./UnitTests/PubnubApiPCL.Tests/bin/Debug/netcoreapp3.1 && powershell dir *.log
