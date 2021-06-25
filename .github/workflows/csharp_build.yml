@@ -119,4 +119,4 @@ jobs:
       - name: Pubnub Logs
         run: cd ./UnitTests/PubnubApiPCL.Tests/bin/Debug/netcoreapp3.1 && powershell dir *.*
       - name: Pubnub Build Release folder
-        run: cd ./Api/PubnubApi/bin/Release && powershell dir *.*
+        run: cd ./Api/PubnubApi/bin/release && powershell dir *.*
