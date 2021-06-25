@@ -122,3 +122,9 @@ jobs:
       - name: Check Diskspace After Tests
         run: powershell Get-WmiObject -Class Win32_logicaldisk
         if: ${{ always() }}
+      - name: Upload Reports
+        uses: actions/upload-artifact@v2
+        if: ${{ always() }} # IMPORTANT: Upload reports regardless of status
+        with:
+          name: csharp-reports
+          path: output
