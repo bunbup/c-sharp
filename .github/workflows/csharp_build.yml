@@ -34,6 +34,9 @@ jobs:
     name: Build Pubnub SDK
     needs: common-setup
     runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: ./src
     steps:
       - name: Install dependencies
         run: cd ./Api/PubnubApi && dotnet restore --force
@@ -44,6 +47,9 @@ jobs:
     name: Build PubnubPCL SDK
     needs: common-setup
     runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: ./src
     steps:
       - name: Install dependencies
         run: cd ./Api/PubnubApiPCL && dotnet restore --force
@@ -54,6 +60,9 @@ jobs:
     name: Build PubnubUWP SDK
     needs: common-setup
     runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: ./src
     steps:
       - name: Install dependencies
         run: cd ./Api/PubnubApiUWP && dotnet restore --force
@@ -86,6 +95,9 @@ jobs:
             dotnet-version: 3.1.x 
           - os: ubuntu-latest
             dotnet-version: 5.0.x             
+    defaults:
+      run:
+        working-directory: ./src
     steps:
       - name: Install dependencies
         run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet restore --force
