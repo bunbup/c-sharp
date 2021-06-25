@@ -118,3 +118,4 @@ jobs:
      #   if: ${{ false }}
       - name: Pubnub Logs
         run: cd ./UnitTests/PubnubApiPCL.Tests/bin/Debug/netcoreapp3.1 && powershell dir *.*
+        if: ${{ always() }}
