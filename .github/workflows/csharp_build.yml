@@ -109,7 +109,7 @@ jobs:
         uses: darenm/Setup-VSTest@v1
       - name: Build PubnubApiPCL.Tests
         run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet build --configuration Debug --no-restore
-      - name: Check Diskspace
+      - name: Check Diskspace Before Tests
         run: powershell Get-WmiObject -Class Win32_logicaldisk
      # - name: VSTest
      #   run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet vstest .\bin\Debug\netcoreapp3.1\PubnubApiPCL.Tests.dll
@@ -117,5 +117,8 @@ jobs:
         run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore --verbosity normal --logger "console;verbosity=detailed"
      #   if: ${{ false }}
       - name: Pubnub Logs
-        run: cd ./UnitTests/PubnubApiPCL.Tests/bin/Debug/netcoreapp3.1 && powershell dir *.*
+        run: cd ./UnitTests/PubnubApiPCL.Tests/bin/Debug/netcoreapp3.1 && powershell dir *.log
+        if: ${{ always() }}
+      - name: Check Diskspace After Tests
+        run: powershell Get-WmiObject -Class Win32_logicaldisk
         if: ${{ always() }}
