@@ -127,4 +127,5 @@ jobs:
         if: ${{ always() }} # IMPORTANT: Upload reports regardless of status
         with:
           name: csharp-reports
-          path: ./UnitTests/PubnubApiPCL.Tests/bin/Debug/netcoreapp3.1/*.log
+          path: ./UnitTests/PubnubApiPCL.Tests/ # Uploads the entire directory
+#          path: ./UnitTests/PubnubApiPCL.Tests/bin/Debug/netcoreapp3.1/*.log
