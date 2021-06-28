@@ -128,6 +128,6 @@ jobs:
         uses: actions/upload-artifact@v2
         if: ${{ always() }} # IMPORTANT: Upload reports regardless of status
         with:
-          name: csharp-reports
+          name: csharp-reports ${{ matrix.os }} ${{ matrix.dotnet-version }}
 #          path: ./UnitTests/PubnubApiPCL.Tests/ # Uploads the entire directory
           path: .
