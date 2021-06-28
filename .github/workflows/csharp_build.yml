@@ -113,9 +113,11 @@ jobs:
         run: powershell Get-WmiObject -Class Win32_logicaldisk
      # - name: VSTest
      #   run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet vstest .\bin\Debug\netcoreapp3.1\PubnubApiPCL.Tests.dll
-      - name: Test PubnubApiPCL.Tests
-        run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore --verbosity normal --logger "console;verbosity=detailed"
-     #   if: ${{ false }}
+     # - name: Test PubnubApiPCL.Tests
+     #   run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore --verbosity normal --logger "console;verbosity=detailed"
+      - name: Create sample file
+        run: echo hello > ./UnitTests/PubnubApiPCL.Tests/bin/Debug/netcoreapp3.1/pandu_e2e_test.log
+        if: ${{ always() }}
       - name: Pubnub Logs
         run: cd ./UnitTests/PubnubApiPCL.Tests/bin/Debug/netcoreapp3.1 && powershell dir *.log
         if: ${{ always() }}
@@ -127,5 +129,5 @@ jobs:
         if: ${{ always() }} # IMPORTANT: Upload reports regardless of status
         with:
           name: csharp-reports
-          path: ./UnitTests/PubnubApiPCL.Tests/ # Uploads the entire directory
-#          path: ./UnitTests/PubnubApiPCL.Tests/bin/Debug/netcoreapp3.1/*.log
+#          path: ./UnitTests/PubnubApiPCL.Tests/ # Uploads the entire directory
+          path: ./UnitTests/PubnubApiPCL.Tests/bin/Debug/netcoreapp3.1/*.log
