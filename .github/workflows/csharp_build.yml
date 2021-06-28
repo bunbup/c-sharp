@@ -113,8 +113,8 @@ jobs:
         run: powershell Get-WmiObject -Class Win32_logicaldisk
      # - name: VSTest
      #   run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet vstest .\bin\Debug\netcoreapp3.1\PubnubApiPCL.Tests.dll
-     # - name: Test PubnubApiPCL.Tests
-     #   run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore --verbosity normal --logger "console;verbosity=detailed"
+      - name: Test PubnubApiPCL.Tests
+        run: cd ./UnitTests/PubnubApiPCL.Tests && dotnet test --no-restore --verbosity normal --logger "console;verbosity=detailed"
       - name: Create sample file
         run: echo hello > ./UnitTests/PubnubApiPCL.Tests/bin/Debug/netcoreapp3.1/pandu_e2e_test.log
         if: ${{ always() }}
